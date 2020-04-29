@@ -128,6 +128,15 @@
         </div>
     </div>
 
+    <div class="container section">
+        <div class="row">
+            <div class="col m6">
+                <h5 class="light">Botones de Notificaciones</h5>
+                <a href="#" class="btn" onclick="alerta()">Alerta</a>
+            </div>
+        </div>
+    </div>
+
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
@@ -144,12 +153,16 @@
     <script src="js/materialize.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            M.AutoInit()
+            M.AutoInit();
             var elems = document.querySelectorAll('.slider');
             var instances = M.Slider.init(elems,{
                 indicators: true
             });
         })
+
+        function alerta(){
+            M.toast({html: 'Soy una Alerta!'})
+        }
     </script>
 </body>
 </html>
