@@ -130,9 +130,51 @@
 
     <div class="container section">
         <div class="row">
-            <div class="col m6">
+            <div class="col m4">
                 <h5 class="light">Botones de Notificaciones</h5>
                 <a href="#" class="btn" onclick="alerta()">Alerta</a>
+            </div>
+            <div class="col m4">
+                <h5 class="light">Link de Modal</h5>
+                <a href="#idModalUno" class="btn purple modal-trigger">Link de Modal</a>
+
+                <div id="idModalUno" class="modal">
+                    <div class="modal-content">
+                        <h4>Titulo del Modal</h4>
+                        <p>Texto del Modal....</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn modal-close">Cerrar</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col m4">
+                <h5 class="light">Boton de Modal</h5>
+                <button class="btn orange modal-trigger" data-target="idModalDos">Boton de Modal</button>
+
+                <div id="idModalDos" class="modal">
+                    <div class="modal-content">
+                        <h4>Titulo del Modal Boton</h4>
+                        <p>Texto del Modal....</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn modal-close">Cerrar</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col s12 m6">
+                <div class="section">
+                    <h5 class="light">Auto Completado</h5>
+                    <div class="input-field">
+                        <div class="material-icons prefix">search</div>
+                        <input type="text" id="buscar" class="autocomplete">
+                        <label for="buscar">Buscar....</label>
+                    </div> 
+                    <div id="respuesta"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -153,12 +195,34 @@
     <script src="js/materialize.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            M.AutoInit();
-            var elems = document.querySelectorAll('.slider');
+            M.AutoInit()
+            var elems = document.querySelectorAll('.slider')
             var instances = M.Slider.init(elems,{
                 indicators: true
-            });
+            })
+
+            //Esta es la parte de auto completado
+
+            var options = {
+                data: {
+                "Apple": null,
+                "Microsoft": null,
+                "Google": 'https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png'
+                },
+                onAutocomplete: function(texto){
+                    // console.log(`Diste click en: ${texto}`)
+                    respuesta.innerHTML = `<h5>Diste Click en: ${texto}</h5>`
+
+                }
+            }
+
+            var elems = document.querySelectorAll('.autocomplete');
+            var instances = M.Autocomplete.init(elems, options);
+
+           
         })
+
+        const respuesta = document.getElementById('respuesta');
 
         function alerta(){
             M.toast({html: 'Soy una Alerta!'})
